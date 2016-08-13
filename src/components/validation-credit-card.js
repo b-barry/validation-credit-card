@@ -26,6 +26,9 @@ export function validate(creditCardNumber = '') {
             break;
         case '5':
             labelCreditCardType += 'Mastercard';
+            if (creditCardNumber.length === 16) {
+                labelCreditCardType = `Mastercard ${checkMarkHTMLEntityDecimal}`;
+            }
             break;
         case '3':
             if (secondDigit === '4' || secondDigit === '7') {

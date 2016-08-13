@@ -31,4 +31,9 @@ describe(' validate', () => {
     expect(validate(`${thirteenDigit}00`)).to.equal(`Visa ${checkMarkHTMLEntityDecimal}`);
     expect(validate(`${thirteenDigit}000`)).to.equal(`Visa ${checkMarkHTMLEntityDecimal}`);
   });
+  it(`should return "Mastercard ${checkMarkHTMLEntityDecimal}" string when creditCardNumber param 
+   start with 5 and hast 16 digits`, () => {
+    const thirteenDigit = '5123456789123';
+    expect(validate(`${thirteenDigit}000`)).to.equal(`Mastercard ${checkMarkHTMLEntityDecimal}`);
+  });
 });
