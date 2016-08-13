@@ -14,6 +14,7 @@ export function validate(creditCardNumber = '') {
         return '';
     }
     const firstDigit = creditCardNumber[0];
+    const secondDigit = creditCardNumber[1];
     let labelCreditCardType = '';
     switch (firstDigit) {
         case '4':
@@ -21,6 +22,11 @@ export function validate(creditCardNumber = '') {
             break;
        case '5':
              labelCreditCardType += 'Mastercard';
+            break;
+       case '3':
+            if (secondDigit === '4' || secondDigit === '7') {
+                labelCreditCardType += 'American Express';
+            }
             break;
         default:
             break;

@@ -18,4 +18,8 @@ describe(' validate', () => {
    it('should return "Mastercard" string when creditCardNumber param start with 5', () => {
     expect(validate('50')).to.equal('Mastercard');
   });
+  it('should return "American Express" string when creditCardNumber param start with 3 and 2nd digit is either 4 or 7 ', () => {
+    expect(validate('34')).to.equal('American Express');
+    expect(validate('37')).to.equal('American Express');
+  });
 });
