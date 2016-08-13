@@ -17,10 +17,13 @@ export function validate(creditCardNumber = '') {
     let labelCreditCardType = '';
     switch (firstDigit) {
         case '4':
-             labelTypeCreditCard += 'Visa';
+             labelCreditCardType += 'Visa';
+            break;
+       case '5':
+             labelCreditCardType += 'Mastercard';
             break;
         default:
             break;
     }
-    return labelTypeCreditCard;
+    return labelCreditCardType;
 }
