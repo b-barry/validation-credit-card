@@ -13,6 +13,9 @@ describe(' validate', () => {
     expect(validate(null)).to.equal('');
   });
    it('should return "Visa" string when creditCardNumber param start with 4', () => {
-    expect(validate('40')).to.equal('Visa');  
+    expect(validate('40')).to.equal('Visa');
+  });
+   it('should return "Mastercard" string when creditCardNumber param start with 5', () => {
+    expect(validate('50')).to.equal('Mastercard');
   });
 });
