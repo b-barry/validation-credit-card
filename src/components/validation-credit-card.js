@@ -13,17 +13,21 @@ export function validate(creditCardNumber = '') {
         creditCardNumber === null) {
         return '';
     }
+    const checkMarkHTMLEntityDecimal = '&#10003;';
     const firstDigit = creditCardNumber[0];
     const secondDigit = creditCardNumber[1];
     let labelCreditCardType = '';
     switch (firstDigit) {
         case '4':
-             labelCreditCardType += 'Visa';
+            labelCreditCardType += 'Visa';
+            if (creditCardNumber.length >= 13 && creditCardNumber.length <= 16) {
+                labelCreditCardType = `Visa ${checkMarkHTMLEntityDecimal}`;
+            }
             break;
-       case '5':
-             labelCreditCardType += 'Mastercard';
+        case '5':
+            labelCreditCardType += 'Mastercard';
             break;
-       case '3':
+        case '3':
             if (secondDigit === '4' || secondDigit === '7') {
                 labelCreditCardType += 'American Express';
             }
