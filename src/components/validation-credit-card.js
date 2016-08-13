@@ -39,6 +39,7 @@ export function validate(creditCardNumber = '') {
             }
             break;
         default:
+         labelCreditCardType += '?';
             break;
     }
     return labelCreditCardType;

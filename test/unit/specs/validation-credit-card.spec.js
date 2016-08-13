@@ -8,6 +8,12 @@ import { validate } from '../../../src/components/validation-credit-card';
  */
  const checkMarkHTMLEntityDecimal = '&#10003;';
 describe(' validate', () => {
+  it('should return ? string when creditCardNumber param the card type is not known', () => {
+    expect(validate('20')).to.equal('?');
+    expect(validate('70')).to.equal('?');
+    expect(validate('80')).to.equal('?');
+    expect(validate('90')).to.equal('?');
+  });
   it('should return empty string when creditCardNumber param is empty or undefined or null', () => {
     expect(validate()).to.equal('');
     expect(validate(undefined)).to.equal('');
