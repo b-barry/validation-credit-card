@@ -36,4 +36,9 @@ describe(' validate', () => {
     const thirteenDigit = '5123456789123';
     expect(validate(`${thirteenDigit}000`)).to.equal(`Mastercard ${checkMarkHTMLEntityDecimal}`);
   });
+  it(`should return "American Express ${checkMarkHTMLEntityDecimal}" string when creditCardNumber param 
+  start with 3, 2nd digit is either 4 or 7 and has 15 digits`, () => {
+    expect(validate('371234567891230')).to.equal(`American Express ${checkMarkHTMLEntityDecimal}`);
+    expect(validate('341234567891230')).to.equal(`American Express ${checkMarkHTMLEntityDecimal}`);
+  });
 });

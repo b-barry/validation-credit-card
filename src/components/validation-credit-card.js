@@ -33,6 +33,9 @@ export function validate(creditCardNumber = '') {
         case '3':
             if (secondDigit === '4' || secondDigit === '7') {
                 labelCreditCardType += 'American Express';
+                if (creditCardNumber.length === 15) {
+                    labelCreditCardType = `American Express ${checkMarkHTMLEntityDecimal}`;
+                }
             }
             break;
         default:
