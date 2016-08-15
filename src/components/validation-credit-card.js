@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /**
  * Validate the credit card number based on the following validation rules
  * Visa cards start with 4.  Visa cards are valid if they have 13 to 16 digits.
@@ -13,34 +14,63 @@ export function validate(creditCardNumber = '') {
         creditCardNumber === null) {
         return '';
     }
+    return handleVerificationAndValidationCreditCardNumber(creditCardNumber);
+}
+
+function handleVerificationAndValidationCreditCardNumber(creditCardNumber = '') {
     const checkMarkHTMLEntityDecimal = '&#10003;';
     const firstDigit = creditCardNumber[0];
     const secondDigit = creditCardNumber[1];
     let labelCreditCardType = '';
+    const creditCardNumberLength = creditCardNumber.length;
     switch (firstDigit) {
         case '4':
-            labelCreditCardType += 'Visa';
-            if (creditCardNumber.length >= 13 && creditCardNumber.length <= 16) {
-                labelCreditCardType = `Visa ${checkMarkHTMLEntityDecimal}`;
-            }
+            labelCreditCardType =
+                handleVerificationAndValidationVisaCard(creditCardNumberLength,
+                    checkMarkHTMLEntityDecimal);
             break;
         case '5':
-            labelCreditCardType += 'Mastercard';
-            if (creditCardNumber.length === 16) {
-                labelCreditCardType = `Mastercard ${checkMarkHTMLEntityDecimal}`;
-            }
+            labelCreditCardType =
+                handleVerificationAndValidationMastercardCard(creditCardNumberLength,
+                    checkMarkHTMLEntityDecimal);
             break;
         case '3':
             if (secondDigit === '4' || secondDigit === '7') {
-                labelCreditCardType += 'American Express';
-                if (creditCardNumber.length === 15) {
-                    labelCreditCardType = `American Express ${checkMarkHTMLEntityDecimal}`;
-                }
+                labelCreditCardType =
+                    handleVerificationAndValidationAmericanExpressCard(creditCardNumberLength,
+                        checkMarkHTMLEntityDecimal);
             }
             break;
         default:
-         labelCreditCardType += '?';
+            labelCreditCardType = '?';
             break;
+    }
+    return labelCreditCardType;
+}
+
+function handleVerificationAndValidationVisaCard(creditCardNumberLength = 0,
+    checkMarkHTMLEntityDecimal) {
+    let labelCreditCardType = 'Visa';
+    if (creditCardNumberLength >= 13 && creditCardNumberLength <= 16) {
+        labelCreditCardType = `Visa ${checkMarkHTMLEntityDecimal}`;
+    }
+    return labelCreditCardType;
+}
+
+function handleVerificationAndValidationMastercardCard(creditCardNumberLength = 0,
+    checkMarkHTMLEntityDecimal) {
+    let labelCreditCardType = 'Mastercard';
+    if (creditCardNumberLength === 16) {
+        labelCreditCardType = `Mastercard ${checkMarkHTMLEntityDecimal}`;
+    }
+    return labelCreditCardType;
+}
+
+function handleVerificationAndValidationAmericanExpressCard(creditCardNumberLength = 0,
+    checkMarkHTMLEntityDecimal) {
+    let labelCreditCardType = 'American Express';
+    if (creditCardNumberLength === 15) {
+        labelCreditCardType = `American Express ${checkMarkHTMLEntityDecimal}`;
     }
     return labelCreditCardType;
 }
