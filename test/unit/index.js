@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Polyfill fn.bind() for PhantomJS
 /* eslint-disable no-extend-native */
 Function.prototype.bind = require('function-bind')
