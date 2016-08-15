@@ -1,3 +1,4 @@
+
 <template>
   <div class="hello">
     <div class="container">
@@ -12,22 +13,22 @@
             <div class='form-group'>
               <label>Credit card number:</label>
               <div class='input-group'>
-                <input type="text" class='form-control' id='card'>
-                <div class='input-group-addon' id='type'></div>
+                <input type="number" class='form-control' id='card' v-model="creditCardNumber" v-on:keyup="updateCreditCardType">
+                <span class='input-group-addon' id='type'  >{{{creditCardType}}}</span>
               </div>
             </div>
             <div class="form-group">
               <label>Name on card:</label>
-              <input type="text" class='form-control'>
+              <input type="text" class='form-control'  v-model="nameCard">
             </div>
             <div class='clearfix'>
               <div class="form-group form-group-mini">
                 <label>Expiry date:</label>
-                <input type='text' class='form-control'>
+                <input type='date' class='form-control' v-model="expiryDate">
               </div>
               <div class="form-group form-group-mini">
                 <label>CVV:</label>
-                <input type='text' class='form-control'>
+                <input type='number' class='form-control' v-model="cvv">
               </div>
             </div>
             <br>
@@ -42,6 +43,8 @@
 </template>
 
 <script>
+  /* eslint-disable */
+import { validate } from './validation-credit-card';
 export default {
   data() {
     return {
@@ -49,9 +52,21 @@ export default {
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
       // its initial state.
-      msg: 'Hello World!',
+      creditCardNumber: '',
+      creditCardType : '',
+      nameCard : '',
+      expiryDate : '',
+      cvv : ''
     };
   },
+  ready () {
+    this.creditCardType = validate(this.creditCardNumber);
+  },
+  methods : {
+    updateCreditCardType : function (){
+      this.creditCardType = validate(this.creditCardNumber);
+    }
+  }
 };
 </script>
 
